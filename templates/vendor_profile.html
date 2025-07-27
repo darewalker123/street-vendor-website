@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ vendor.name }} - Supplier Profile{% endblock %}
+
+{% block content %}
+<div class="material-card" style="max-width:470px;margin:1.9em auto 1.5em auto;">
+  <h2 style="color:#5530a5;">{{ vendor.name }}</h2>
+  <div style="color:#372369;">
+    <div>
+      <b>Email:</b> {{ vendor.email }}
+    </div>
+    {% if vendor.phone %}<div><b>Phone:</b> {{ vendor.phone }}</div>{% endif %}
+    {% if vendor.address %}<div><b>Address:</b> {{ vendor.address }}</div>{% endif %}
+  </div>
+</div>
+{% if materials and materials|length > 0 %}
+<table class="data-table">
+    <tr>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Unit</th>
+    </tr>
+    {% for material in materials %}
+    <tr>
+        <td><img src="{{ url_for('static', filename='icons/' + (material.category|lower|replace(' ','_')) + '.png') }}" alt="" class="mat-icon" onerror="this.style.display='none';"></td>
+        <td>{{ material.name }}</td>
+        <td>{{ material.category }}</td>
+        <td>₹{{ "%.2f"|format(material.price) }}</td>
+        <td>{{ material.qty }}</td>
+        <td>{{ material.unit or 'kg' }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<div style="text-align:center;color:#887bb0;padding:1.2em 0;font-weight:500;">
+    This supplier currently has no materials listed.
+</div>
+{% endif %}
+<div style="text-align:center;margin:2em 0;">
+  <a href="{{ url_for('consumer_dashboard') }}" class="btn btn-outline">Back to Browse</a>
+</div>
+{% endblock %}

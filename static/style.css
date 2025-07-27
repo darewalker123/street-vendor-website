@@ -1,0 +1,172 @@
+body {
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0eafc 100%);
+  color: #23213a;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header/Nav */
+header {
+  background: linear-gradient(90deg, #5530a5 0 80%, #27ae60 100%);
+  color: #fff;
+  padding: 1.35em 2em 1.35em 2em;
+  box-shadow: 0 3px 20px rgba(85,48,165,0.11);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0 0 22px 22px;
+  margin-bottom: 1.4em;
+}
+header a.logo {
+  font-weight: 900;
+  font-size: 1.8em;
+  letter-spacing: .02em;
+  color: #fff;
+  text-shadow: 0 1px 5px rgba(39,174,96,.08);
+}
+header nav a {
+  margin-left: 1.2em;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1em;
+}
+header nav a:hover { color: #ccd6ff; }
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(109deg,#fffbe3 90%, #27ae60 260%);
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px 0 rgba(85,48,165,0.08);
+  margin-bottom: 2.5em;
+  padding: 3.5em 2em 2.2em 2em;
+  position: relative;
+}
+.hero img {
+  width: 90%;
+  max-width: 580px;
+  border-radius: 20px;
+  margin-bottom: 1.3em;
+  box-shadow: 0 10px 26px rgba(63, 63, 114, 0.11);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero h1 {
+  font-size: 2.45em;
+  margin: 0.35em 0 0.15em 0;
+  color: #372369;
+  font-weight: 800;
+  text-shadow: 0 2px 10px #e0eafc1a;
+}
+.hero p {
+  font-size: 1.18em;
+  color: #463c73;
+  margin-bottom: 2em;
+  font-weight: 500;
+}
+
+.btn, .btn-primary {
+  border-radius: 30px;
+  background: linear-gradient(90deg, #27ae60 20%, #5530a5 100%);
+  color: white !important;
+  font-weight: 700;
+  border: none;
+  font-size: 1.07em;
+  box-shadow: 0 2px 8px #b9d3f50d;
+  padding: 0.68em 2.15em;
+  margin-top: 0.7em;
+  cursor: pointer;
+  transition: filter 0.18s,box-shadow 0.2s;
+  display: inline-block;
+}
+.btn:hover {
+  filter: brightness(1.08);
+  background: linear-gradient(90deg, #5530a5 10%, #22bb6b 89%);
+  box-shadow: 0 4px 18px #5e47e92c;
+  color: #f3e9ff !important;
+}
+.btn-outline {
+  background: transparent;
+  border: 2px solid #5530a5;
+  color: #5530a5 !important;
+  font-weight: 700;
+  border-radius: 30px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px #b9d3f50d;
+}
+.btn-outline:hover {
+  background: linear-gradient(90deg, #5530a5 40%, #27ae60 96%);
+  color: #fff !important;
+  box-shadow: 0 4px 18px #5e47e92c;
+}
+
+.materials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3em;
+  justify-content: center;
+}
+
+.material-card {
+  border: 2.5px solid #e3dbfa;
+  padding: 1.25em 1.5em 1.3em 1.5em;
+  border-radius: 15px;
+  background: white;
+  min-width: 260px;
+  max-width: 290px;
+  box-shadow: 0 2px 15px #4323a60a;
+  margin-bottom: 0.96em;
+  transition: box-shadow 0.16s;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.material-card:hover {
+  box-shadow: 0 6px 32px #5530a544;
+  border-color: #dabee5;
+}
+.material-card h3 {
+  margin-top: 0.4em;
+  color: #5530a5;
+  font-size: 1.27em;
+}
+.material-card .badge {
+  background: #dabee5;
+  color: #372369;
+  border-radius: 12px;
+  font-size: 0.88em;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 0.6em;
+  padding: 0.18em 0.8em;
+}
+.material-card .price {
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 1em;
+}
+.material-card .mat-icon {
+  margin-bottom: 0.5em;
+}
+/* To keep button at bottom, but centered */
+.material-card a.btn {
+  margin-top: auto;
+  margin-bottom: 0;
+  align-self: center;
+  width: 90%;
+}
+
+.mat-icon {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-top: -2px;
+  margin-bottom: 0.3em;
+}
+
+/* Other relevant unchanged styles here (tables, auth form, etc)... */
+/* ...keep your other existing code from earlier here... */

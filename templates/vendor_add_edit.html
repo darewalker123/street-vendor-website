@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if mode == 'edit' else 'Add' }} Material - RAW CONNECT{% endblock %}
+
+{% block content %}
+<div class="auth-form-container">
+  <h2 style="color:#5530a5;font-size:1.5em;margin-bottom:0.5em;">{{ 'Edit' if mode == 'edit' else 'Add' }} Material</h2>
+  <form method="post">
+    <label for="name">Material Name</label>
+    <input type="text" name="name" required value="{{ material.name if material else '' }}">
+
+    <label for="category">Category</label>
+    <input type="text" name="category" required value="{{ material.category if material else '' }}">
+
+    <label for="price">Price (per unit)</label>
+    <input type="number" step="0.01" name="price" required value="{{ material.price if material else '' }}">
+
+    <label for="qty">Quantity</label>
+    <input type="number" name="qty" required value="{{ material.qty if material else '' }}">
+
+    <label for="unit">Unit</label>
+    <input type="text" name="unit" value="{{ material.unit if material and material.unit else 'kg' }}">
+
+    <label for="description">Description</label>
+    <textarea name="description" rows="2">{{ material.description if material else '' }}</textarea>
+    <button type="submit" class="btn">{{ 'Update' if mode == 'edit' else 'Add' }}</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Vendor Dashboard - RAW CONNECT{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+  <h2>Your Materials</h2>
+  <a href="{{ url_for('vendor_add') }}" class="btn">Add Material</a>
+</div>
+
+{% if materials and materials|length > 0 %}
+<table class="data-table">
+    <tr>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <th>Actions</th>
+    </tr>
+    {% for material in materials %}
+    <tr>
+        <td><img src="{{ url_for('static', filename='icons/' + (material.category|lower|replace(' ','_')) + '.png') }}" alt="" class="mat-icon" onerror="this.style.display='none';"></td>
+        <td>{{ material.name }}</td>
+        <td>{{ material.category }}</td>
+        <td>₹{{ "%.2f"|format(material.price) }}</td>
+        <td>{{ material.qty }}</td>
+        <td>{{ material.unit or 'kg' }}</td>
+        <td>
+          <a href="{{ url_for('vendor_edit', material_id=material.id) }}" class="btn btn-sm">Edit</a>
+          <a href="{{ url_for('vendor_delete', material_id=material.id) }}" class="btn btn-sm btn-outline" onclick="return confirm('Delete this material?');">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<div style="text-align:center;color:#9567c4;padding:1.1em 0;">
+  You have not added any materials yet. <a href="{{ url_for('vendor_add') }}">Add your first material</a>.
+</div>
+{% endif %}
+{% endblock %}

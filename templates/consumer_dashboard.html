@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Browse Materials - RAW CONNECT{% endblock %}
+
+{% block content %}
+
+<form class="search-form" method="get">
+    <input type="text" name="search" placeholder="Search material name…" value="{{ search or '' }}" style="max-width:220px;">
+    <select name="category">
+        <option value="">All Categories</option>
+        {% for cat in categories %}
+           <option value="{{ cat }}" {% if cat==selected_category %}selected{% endif %}>{{ cat }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-sm">Search</button>
+</form>
+
+{% if materials and materials|length > 0 %}
+<table class="data-table">
+    <tr>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Supplier</th>
+        <th></th>
+    </tr>
+    {% for material in materials %}
+    <tr>
+        <td><img src="{{ url_for('static', filename='icons/' + (material.category|lower|replace(' ','_')) + '.png') }}" alt="" class="mat-icon" onerror="this.style.display='none';"></td>
+        <td>{{ material.name }}</td>
+        <td>{{ material.category }}</td>
+        <td>₹{{ "%.2f"|format(material.price) }} / {{ material.unit or 'kg' }}</td>
+        <td>{{ material.qty }} {{ material.unit or 'kg' }}</td>
+        <td>{{ material.user.name }}</td>
+        <td>
+          <a href="{{ url_for('vendor_profile', vendor_id=material.user_id) }}" class="btn btn-sm">View</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<div style="text-align:center;color:#9567c4;padding:1.1em 0;">
+    No materials found matching your criteria.
+</div>
+{% endif %}
+
+{% endblock %}

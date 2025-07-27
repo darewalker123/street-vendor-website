@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}RAW CONNECT{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('home') }}" class="logo">RAW CONNECT</a>
+        <nav>
+            {% if 'user_id' in session %}
+                {% if session.get('role')=='vendor' %}
+                    <a href="{{ url_for('vendor_dashboard') }}">Dashboard</a>
+                {% else %}
+                    <a href="{{ url_for('consumer_dashboard') }}">Browse</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('consumer_dashboard') }}">Browse</a>
+            {% endif %}
+        </nav>
+    </header>
+    <div class="flashes">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash {{category}}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

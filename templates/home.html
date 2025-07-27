@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}RAW CONNECT{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <!-- Make sure vendor-market.jpg is in the static/ folder (static/vendor-market.jpg) -->
+    <img src="{{ url_for('static', filename='vendor-market.jpg') }}" alt="Vibrant street market">
+    <h1>Connecting street vendors with trusted suppliers</h1>
+    <p>Fast, reliable access to fresh raw materials for every street vendor. <br> Discover, connect, and grow your business now!</p>
+    <a href="{{ url_for('consumer_dashboard') }}" class="btn">Browse Materials</a>
+    <a href="{{ url_for('register') }}" class="btn btn-outline">Join as Vendor</a>
+</div>
+
+{% if featured_materials and featured_materials|length > 0 %}
+    <h2 style="text-align:center;color:#372369;">Featured Raw Materials</h2>
+    <div class="materials-grid">
+    {% for material in featured_materials %}
+        <div class="material-card">
+            <img class="mat-icon" src="{{ url_for('static', filename='icons/' + (material.category|lower|replace(' ','_')) + '.png') }}" alt="{{ material.category }} icon" onerror="this.style.display='none';">
+            <div class="badge">{{material.category}}</div>
+            <h3>{{ material.name }}</h3>
+            <div class="price">₹{{ "%.2f"|format(material.price) }} / {{ material.unit or 'kg' }}</div>
+            <div>Qty: {{ material.qty }} {{ material.unit or 'kg' }}</div>
+            <a href="{{ url_for('vendor_profile', vendor_id=material.user_id) }}" class="btn btn-sm">View Supplier</a>
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

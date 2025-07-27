@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Login - RAW CONNECT{% endblock %}
+
+{% block content %}
+<div class="auth-form-container">
+ <h2 style="color:#5530a5;">Login</h2>
+  <form method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" required>
+    <button type="submit" class="btn">Login</button>
+  </form>
+  <div style="text-align:center;margin-top:1em;">
+    <span style="color:#4323a6;">Don't have an account?</span>
+    <a href="{{ url_for('register') }}">Register here.</a>
+  </div>
+</div>
+{% endblock %}
